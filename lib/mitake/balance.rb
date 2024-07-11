@@ -23,7 +23,7 @@ module Mitake
     include API
     include Model
 
-    path '/api/mtk/SmQuery'
+    path '/b2c/mtk/SmQuery'
     map 'AccountPoint', 'amount'
 
     # @!attribute [r] amount

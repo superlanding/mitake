@@ -15,7 +15,7 @@ module Mitake
     include Model
 
     method 'Post'
-    path '/api/mtk/SmSend?CharsetURL=UTF8'
+    path '/b2c/mtk/SmSend?CharsetURL=UTF8'
     map 'msgid', 'id'
     map 'Duplicate', 'duplicate'
     map 'statuscode', 'status_code'

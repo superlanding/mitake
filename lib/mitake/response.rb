@@ -10,7 +10,7 @@ module Mitake
     include API
 
     method 'Post'
-    path '/api/mtk/SmSend?CharsetURL=UTF8'
+    path '/b2c/mtk/SmSend?CharsetURL=UTF8'
 
     # @since 0.1.0
     # @api private
