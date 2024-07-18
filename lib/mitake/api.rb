@@ -3,6 +3,8 @@
 require 'mitake/parser'
 require 'mitake/api/get'
 require 'mitake/api/post'
+require 'mitake/api/bulk_post'
+require 'mitake/credential'
 
 module Mitake
   # Provide API Interface
@@ -48,7 +50,7 @@ module Mitake
       def method(method = nil)
         return @method if method.nil?
 
-        @method = method.to_s.capitalize
+        @method = method.to_s
       end
 
       # Set response field mapping

@@ -4,6 +4,7 @@ require 'mitake/version'
 require 'mitake/credential'
 require 'mitake/balance'
 require 'mitake/message'
+require 'mitake/bulk_message'
 
 # The Mitake API Client
 #

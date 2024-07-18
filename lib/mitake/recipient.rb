@@ -12,5 +12,11 @@ module Mitake
     # @since 0.1.0
     attribute :name, String
     attribute :phone_number, String
+    attribute :message, String
+
+    # @since 0.2.0
+    def message?
+      !message.empty?
+    end
   end
 end
