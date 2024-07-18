@@ -19,6 +19,8 @@ module Mitake
     map 'msgid', 'id'
     map 'Duplicate', 'duplicate'
     map 'statuscode', 'status_code'
+    map 'AccountPoint', 'amount'
+    map 'smsPoint', 'sms_point'
 
     # @!attribute [r] id
     # @return [String] the message id
@@ -112,7 +114,8 @@ module Mitake
         vldtime: @expired_at&.strftime('%Y%m%d%H%M%S'),
         dstaddr: @recipient.phone_number,
         destname: @recipient.name,
-        response: @webhook_url
+        response: @webhook_url,
+        smsPointFlag: 1
       }.reject { |_, v| v.nil? }.to_h
     end
   end
