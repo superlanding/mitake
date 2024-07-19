@@ -50,13 +50,9 @@ module Mitake
     # @return [String|NilClass] the response callback url
     attribute :webhook_url, String
 
-    # @!attribute [r] duplicate
-    # @return [TrueClass|FalseClass] is the message duplicate
-    attribute :duplicate, Boolean, readonly: true
-
-    # @!attribute [r] status_code
-    # @return [Integer] the status code
-    attribute :status_code, Integer, readonly: true
+    # @!attribute [r] response
+    # @return [Response] the response
+    attribute :response, Response, readonly: true
 
     # Send message
     #
@@ -68,6 +64,7 @@ module Mitake
       self.class.execute(params) do |items|
         attrs = items&.first&.slice(*self.class.attribute_names)
         assign_attributes(attrs)
+        @response = Response.new(items&.first)
       end
 
       self
@@ -88,7 +85,7 @@ module Mitake
     #
     # @since 0.1.0
     def duplicate?
-      @duplicate == true
+      @response&.duplicate?
     end
 
     # Readable status code
@@ -97,7 +94,7 @@ module Mitake
     #
     # @since 0.1.0
     def status
-      Status::CODES[@status_code]
+      @response&.status
     end
 
     private
