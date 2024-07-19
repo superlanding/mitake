@@ -19,6 +19,8 @@ module Mitake
     map 'msgid', 'id'
     map 'Duplicate', 'duplicate'
     map 'statuscode', 'status_code'
+    map 'AccountPoint', 'amount'
+    map 'smsPoint', 'sms_point'
 
     # @!attribute [r] id
     # @return [String] the message id
@@ -73,6 +75,15 @@ module Mitake
     # @since 0.2.0
     def sent?
       @responses&.any? || false
+    end
+
+    # Response
+    #
+    # @return [Array<Mitake::Response>] the message responses
+    #
+    # @since 0.2.0
+    def response
+      @responses
     end
 
     private
