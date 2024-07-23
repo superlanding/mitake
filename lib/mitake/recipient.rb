@@ -10,6 +10,7 @@ module Mitake
     include Model
 
     # @since 0.1.0
+    attribute :client_id, String
     attribute :name, String
     attribute :phone_number, String
     attribute :message, String
@@ -17,6 +18,11 @@ module Mitake
     # @since 0.2.0
     def message?
       !message&.empty?
+    end
+
+    # @since 0.2.0
+    def client_id
+      @client_id || @phone_number
     end
   end
 end

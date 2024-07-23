@@ -26,10 +26,6 @@ module Mitake
     # @return [String] the message id
     attribute :id, String, readonly: true
 
-    # @!attribute source_id
-    # @return [String] the customize identity
-    attribute :source_id, String
-
     # @!attribute receipient
     # @return [Mitake::Recipients] the message recipient
     attribute :recipients, Recipients
@@ -95,7 +91,7 @@ module Mitake
     def params
       @recipients.map.with_index do |recipient, index|
         [
-          index + 1,
+          recipient.client_id,
           recipient.phone_number,
           @schedule_at&.strftime('%Y%m%d%H%M%S'),
           @expired_at&.strftime('%Y%m%d%H%M%S'),
