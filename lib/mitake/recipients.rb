@@ -12,14 +12,14 @@ module Mitake
     # @since 0.2.0
     attribute :recipients, [Recipient]
 
-    def initialize
+    def initialize(attributes = {})
       @recipients = []
-      super
+      super(attributes)
     end
 
     # @since 0.2.0
-    def add(name, phone_number, message = nil)
-      @recipients << Recipient.new(name: name, phone_number: phone_number, message: message)
+    def add(attributes)
+      @recipients << Recipient.new(attributes)
     end
 
     # @since 0.2.0
