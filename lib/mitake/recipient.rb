@@ -17,7 +17,9 @@ module Mitake
 
     # @since 0.2.0
     def message?
-      !message&.empty?
+      return false if message.nil? || message.empty?
+
+      true
     end
 
     # @since 0.2.0
