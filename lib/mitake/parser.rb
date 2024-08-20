@@ -54,7 +54,7 @@ module Mitake
     # @api private
     def new_item(id = nil)
       @items << @current unless @current.nil?
-      @current = id ? { 'source_id': id } : {}
+      @current = id ? { 'source_id' => id } : {}
     end
   end
 end
