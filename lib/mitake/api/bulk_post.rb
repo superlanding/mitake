@@ -26,7 +26,7 @@ module Mitake
       # @since 0.2.0
       # @api private
       def uri
-        @uri ||= URI("#{Mitake.credential.server}#{@path}?username=#{Mitake.credential.username}&password=#{Mitake.credential.password}")
+        @uri ||= URI("#{Mitake.credential.server}#{@path}?Encoding_PostIn=UTF8&username=#{Mitake.credential.username}&password=#{Mitake.credential.password}")
       end
 
       # Return the request params

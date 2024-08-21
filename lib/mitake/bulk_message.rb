@@ -15,7 +15,7 @@ module Mitake
     include Model
 
     method 'BulkPost'
-    path "/b2c/mtk/SmBulkSend?Encoding_PostIn=UTF8"
+    path "/b2c/mtk/SmBulkSend"
     map 'msgid', 'id'
     map 'Duplicate', 'duplicate'
     map 'statuscode', 'status_code'
@@ -99,7 +99,7 @@ module Mitake
           @webhook_url,
           recipient.message? ? recipient.message : @body,
         ].join('$$')
-      end.join("\r\n")
+      end.join("\n")
     end
   end
 end
