@@ -31,6 +31,27 @@ If you prefer to config it by the environment variable, please setup `MITAKE_USE
 
 > The default server is `https://smsapi.mitake.com.tw` if you use a different server, please specify it manual.
 
+### Send single SMS
+
+```ruby
+# Get the balance in the account
+puts "Point: #{Mitake::Balance.amount}"
+
+# Create recipient and give phone number
+recipient = Mitake::Recipient.new(phone_number: '09xxxxxxxx', name: 'John')
+
+# Create message with body
+message = Mitake::Message.new(recipient: recipient, body: 'Hello World!')
+
+# Delivery message
+message.delivery
+
+# Check status
+puts message.status unless message.sent?
+```
+
+### Send bulk SMS
+
 ```ruby
 # Get the balance in the account
 puts "Point: #{Mitake::Balance.amount}"
@@ -81,7 +102,7 @@ end
 * [ ] Rspec tests
 * [ ] Message
   * [x] Delivery
-  * [ ] Batch Delivery
+  * [x] Batch Delivery
   * [ ] Webhook
   * [ ] Query Status
   * [ ] Cancel
