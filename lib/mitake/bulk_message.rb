@@ -97,7 +97,7 @@ module Mitake
           @expired_at&.strftime('%Y%m%d%H%M%S'),
           recipient.name,
           @webhook_url,
-          recipient.message? ? recipient.message : @body,
+          (recipient.message? ? recipient.message : @body).gsub(/\r?\n/, "\x06"),
         ].join('$$')
       end.join("\n")
     end

@@ -106,7 +106,7 @@ module Mitake
     def params
       {
         clientid: @source_id,
-        smbody: @body,
+        smbody: @body.gsub(/\r?\n/, "\x06"),
         dlvtime: @schedule_at&.strftime('%Y%m%d%H%M%S'),
         vldtime: @expired_at&.strftime('%Y%m%d%H%M%S'),
         dstaddr: @recipient.phone_number,
