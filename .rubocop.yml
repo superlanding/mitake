@@ -1,0 +1,27 @@
+AllCops:
+  TargetRubyVersion: 2.7
+  SuggestExtensions: false
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'gemfiles/**/*'
+
+# Spec files often have longer blocks
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+# Allow slightly longer methods (11 lines is reasonable)
+Metrics/MethodLength:
+  Max: 15
+
+# Allow longer lines for URIs and configuration
+Layout/LineLength:
+  Max: 160
+  AllowURI: true
+  Exclude:
+    - 'spec/**/*'
+
+# Allow empty placeholder classes
+Lint/EmptyClass:
+  Enabled: false

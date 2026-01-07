@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+# frozen_string_literal: true
+
+set -e
+
+echo "=== Running tests for all Ruby versions ==="
+echo ""
+
+GEMFILES=(
+  "gemfiles/ruby_2.7.gemfile"
+  "gemfiles/ruby_3.0.gemfile"
+  "gemfiles/ruby_3.1.gemfile"
+)
+
+RUBY_VERSIONS=(
+  "2.7.6"
+  "3.0.7"
+  "3.1.7"
+)
+
+CURRENT_RUBY_VERSION=$(ruby -v | cut -d' ' -f2 | cut -d'p' -f1)
+
+echo "Current Ruby version: $CURRENT_RUBY_VERSION"
+echo ""
+
+# Find matching gemfile for current Ruby version
+GEMFILE=""
+for i in "${!RUBY_VERSIONS[@]}"; do
+  VERSION="${RUBY_VERSIONS[$i]}"
+  MAJOR_MINOR=$(echo "$VERSION" | cut -d'.' -f1,2)
+  CURRENT_MAJOR_MINOR=$(echo "$CURRENT_RUBY_VERSION" | cut -d'.' -f1,2)
+
+  if [ "$MAJOR_MINOR" = "$CURRENT_MAJOR_MINOR" ]; then
+    GEMFILE="${GEMFILES[$i]}"
+    break
+  fi
+done
+
+if [ -z "$GEMFILE" ]; then
+  echo "Error: No matching gemfile found for Ruby $CURRENT_RUBY_VERSION"
+  echo "Supported versions: ${RUBY_VERSIONS[*]}"
+  exit 1
+fi
+
+echo "Using gemfile: $GEMFILE"
+echo ""
+
+# Install dependencies
+echo "=== Installing dependencies ==="
+BUNDLE_GEMFILE="$GEMFILE" bundle install
+
+echo ""
+echo "=== Running RSpec ==="
+BUNDLE_GEMFILE="$GEMFILE" bundle exec rspec
+
+echo ""
+echo "=== Running RuboCop ==="
+BUNDLE_GEMFILE="$GEMFILE" bundle exec rubocop
+
+echo ""
+echo "✓ All tests passed for Ruby $CURRENT_RUBY_VERSION"

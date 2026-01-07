@@ -29,7 +29,7 @@ module Mitake
     # @since 0.2.0
     # @api private
     def initialize(response)
-      @raw = response
+      @raw = response.dup
       @source_id = @raw.delete('source_id')
       @status_code = @raw.delete('status_code')
       @error = @raw.delete('Error')

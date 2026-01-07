@@ -113,7 +113,7 @@ module Mitake
         destname: @recipient.name,
         response: @webhook_url,
         smsPointFlag: 1
-      }.reject { |_, v| v.nil? }.to_h
+      }.compact.to_h
     end
   end
 end

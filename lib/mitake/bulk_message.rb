@@ -15,7 +15,7 @@ module Mitake
     include Model
 
     method 'BulkPost'
-    path "/b2c/mtk/SmBulkSend"
+    path '/b2c/mtk/SmBulkSend'
     map 'msgid', 'id'
     map 'Duplicate', 'duplicate'
     map 'statuscode', 'status_code'
@@ -89,7 +89,7 @@ module Mitake
     # @since 0.2.0
     # @api private
     def params
-      @recipients.map.with_index do |recipient, index|
+      @recipients.map.with_index do |recipient, _index|
         [
           recipient.client_id,
           recipient.phone_number,
@@ -97,7 +97,7 @@ module Mitake
           @expired_at&.strftime('%Y%m%d%H%M%S'),
           recipient.name,
           @webhook_url,
-          (recipient.message? ? recipient.message : @body).gsub(/\r?\n/, "\x06"),
+          (recipient.message? ? recipient.message : @body).gsub(/\r?\n/, "\x06")
         ].join('$$')
       end.join("\n")
     end

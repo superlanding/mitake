@@ -28,11 +28,10 @@ module Mitake
         .class
         .attribute_names
         .map { |attr| [attr, send(attr)] }
-        .reject { |_, value| value.nil? }
-        .map do |attr, value|
-        [attr, value.respond_to?(:attributes) ? value.attributes : value]
+        .compact
+        .transform_values do |value|
+        value.respond_to?(:attributes) ? value.attributes : value
       end
-        .to_h
     end
   end
 end

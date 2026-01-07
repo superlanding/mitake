@@ -35,9 +35,7 @@ module Mitake
       #
       # @since 0.1.0
       # @api private
-      def params
-        @params
-      end
+      attr_reader :params
     end
   end
 end

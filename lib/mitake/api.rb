@@ -103,9 +103,9 @@ module Mitake
       # @since 0.1.0
       # @api private
       def rename_attribute(item)
-        item.map do |key, value|
-          [@mapping[key] || key, value]
-        end.to_h
+        item.transform_keys do |key|
+          @mapping[key] || key
+        end
       end
     end
   end

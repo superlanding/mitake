@@ -9,3 +9,6 @@
 
 # rspec failure tracking
 .rspec_status
+
+# gemfiles lock files
+/gemfiles/*.lock

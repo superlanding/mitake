@@ -111,6 +111,28 @@ end
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
 
+### Testing with Multiple Ruby Versions
+
+This gem supports Ruby 2.7.6, 3.0.7, and 3.1.7. To test against your current Ruby version:
+
+```bash
+bin/test_all
+```
+
+This will automatically detect your Ruby version and use the appropriate Gemfile from `gemfiles/` directory.
+
+Supported Ruby versions:
+- Ruby 2.7.6 → `gemfiles/ruby_2.7.gemfile`
+- Ruby 3.0.7 → `gemfiles/ruby_3.0.gemfile`
+- Ruby 3.1.7 → `gemfiles/ruby_3.1.gemfile`
+
+You can also test manually with a specific Gemfile:
+
+```bash
+BUNDLE_GEMFILE=gemfiles/ruby_3.0.gemfile bundle install
+BUNDLE_GEMFILE=gemfiles/ruby_3.0.gemfile bundle exec rspec
+```
+
 To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
