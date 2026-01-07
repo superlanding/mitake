@@ -21,9 +21,9 @@ module Mitake
     #
     # @since 0.1.0
     def initialize(username = nil, password = nil, server = nil)
-      @username = username || ENV['MITAKE_USERNAME']
-      @password = password || ENV['MITAKE_PASSWORD']
-      @server = server || ENV['MITAKE_SERVER'] || DEFAULT_SERVER
+      @username = username || ENV.fetch('MITAKE_USERNAME', nil)
+      @password = password || ENV.fetch('MITAKE_PASSWORD', nil)
+      @server = server || ENV.fetch('MITAKE_SERVER', nil) || DEFAULT_SERVER
     end
   end
 end
