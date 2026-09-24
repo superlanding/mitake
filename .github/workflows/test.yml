@@ -16,6 +16,8 @@ jobs:
           - '2.7.6'
           - '3.0.7'
           - '3.1.7'
+          - '3.3.12'
+          - '3.4.11'
         include:
           - ruby: '2.7.6'
             gemfile: gemfiles/ruby_2.7.gemfile
@@ -23,6 +25,10 @@ jobs:
             gemfile: gemfiles/ruby_3.0.gemfile
           - ruby: '3.1.7'
             gemfile: gemfiles/ruby_3.1.gemfile
+          - ruby: '3.3.12'
+            gemfile: gemfiles/ruby_3.3.gemfile
+          - ruby: '3.4.11'
+            gemfile: gemfiles/ruby_3.4.gemfile
 
     env:
       BUNDLE_GEMFILE: ${{ matrix.gemfile }}
